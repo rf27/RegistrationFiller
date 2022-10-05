@@ -9,6 +9,7 @@ Fills a PDF (specifically, the Shepherd's Hope patient encounter form) from an .
 3. Download a copy of [Git Bash](https://git-scm.com/download/win). 
 4. Download and unzip the [Java Development Kit 18.0.1](https://download.oracle.com/java/18/archive/jdk-18.0.1_windows-x64_bin.zip) into the same directory as the .jar file.
 5. Make a copy of the [Shepherd's Hope Online Patient Encounter Form](https://forms.office.com/Pages/ShareFormPage.aspx?id=IeHPzXcA5Eiujcmx7lkqQsm3CQBsuKlBoG0NwCaEnbtUNDlSNzEzV001STlLT1lRR0xDMTA4NUNESS4u&sharetoken=mCK0cH8IpOg6vmNBElw3).
+6. Make a copy of Apps Script program [translateBot](https://script.google.com/d/1xwbrYbrQBNShJxdu7bT-wuJEdSXYhJ8A4dlHF6_HMbmemDgP9wXWayiM/edit?usp=sharing) and insert the web app URL in line 829 in `FormFiller.java`
 
 ## Using the Program
 1. In the RegistrationFiller folder, open the `RegistrationFillerRunner.sh` file.
