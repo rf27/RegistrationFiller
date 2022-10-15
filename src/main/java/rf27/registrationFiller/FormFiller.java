@@ -39,6 +39,7 @@ import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.List;
+import java.util.Map;
 
 import org.apache.poi.ss.usermodel.Cell;
 import org.apache.poi.ss.usermodel.Row;
@@ -139,13 +140,13 @@ public class FormFiller implements Runnable {
 			bisEncounter.close();
 			bisEncounter = new BufferedInputStream(new FileInputStream("data/encounter_hep.pdf"));
 		}
-		List<PDFobj> objectsEncounter = pdf.read(bisEncounter);
+		Map<Integer, PDFobj> objectsEncounter = pdf.read(bisEncounter);
 		bisEncounter.close();
 
 		List<PDFobj> pages = pdf.getPageObjects(objectsEncounter);
-		Page pageEncounter = new Page(pdf, pages.get(0));
-		font = pageEncounter.addResource(CoreFont.HELVETICA, objectsEncounter);
-		fontBold = pageEncounter.addResource(CoreFont.HELVETICA_BOLD, objectsEncounter);
+		Page pageEncounter = new Page(pdf, objectsEncounter, pages.get(0));
+		font = pageEncounter.addFontResource(CoreFont.HELVETICA);
+		fontBold = pageEncounter.addFontResource(CoreFont.HELVETICA_BOLD);
 		pageEncounter.setBrushColor(Color.darkslategray);
 
 		// date of visit
@@ -359,12 +360,12 @@ public class FormFiller implements Runnable {
 			}
 		}
 		font.setSize(12f);
-		pageEncounter.complete(objectsEncounter); // finish page 1 (encounter)
+		pageEncounter.complete(); // finish page 1 (encounter)
 
 		/*
 		 * START PRINTING 1032 (Page 2)
 		 */
-		Page page1032 = new Page(pdf, pages.get(1));
+		Page page1032 = new Page(pdf, objectsEncounter, pages.get(1));
 		page1032.setBrushColor(Color.darkslategray);
 
 //		boolean nameDoubleOffset = false;
@@ -435,14 +436,14 @@ public class FormFiller implements Runnable {
 
 		checkBox(page1032, 308.3f, 709.95f, 6.2f); // "In lieu of signature..." check box
 
-		page1032.complete(objectsEncounter);
+		page1032.complete();
 
 		/*
 		 * Start printing hepatitis C intake form
 		 * Only printed if patient selects "Yes" for Q20
 		 */
 		if (patient[19].equals("Yes")) {
-			Page pageHepC = new Page(pdf, pages.get(2));
+			Page pageHepC = new Page(pdf, objectsEncounter, pages.get(2));
 			pageHepC.setBrushColor(Color.darkslategray);
 			font.setSize(14f);
 
@@ -598,11 +599,10 @@ public class FormFiller implements Runnable {
 				}
 			}
 
-			pageHepC.complete(objectsEncounter);	
+			pageHepC.complete();	
 		}
 
 		pdf.addObjects(objectsEncounter);
-		pdf.complete();
 		pdf.close();
 	}
 
