@@ -1,0 +1,26 @@
+# Registration Filler Changelog
+
+## Known Issues
+- Predicted/translated language does not necessarily match user input
+
+## [1.0.1b] - 5/23/22
+### Changed
+- Temporarily disabled printing feature due to issues with print settings
+
+## [1.0.1] - 05/04/2022
+### Fixed
+- Improved memory footprint when using included print prompt
+- Printed pages are rescaled to fit margins
+### Changed
+- Main window name changed from "Encounter Form Filler..." to "Registration Filler..."
+- Print window automatically closes after clicking "Print selected file(s)" button
+- Printer prompt changed from common to native
+- Checkbox "Delete file(s) after printing" will also delete Excel file (.xls/.xlsx) after clicking "Print selected file(s)" button
+
+## [1.0.0] - 04/06/2022
+
+## TODO
+- Include Spanish 1032 page as option when user selects "Spanish" but NOT "English"
+- Use detectLanguage() with ArrayList<Language> return instead of String return
+- Reduce memory allocation
+- Use Geoapify API for user-input address prediction
