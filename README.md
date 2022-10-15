@@ -1,7 +1,7 @@
 # RegistrationFiller
 Fills a PDF (specifically, the Shepherd's Hope patient encounter form) from an .xls/.xlsx file generated from Microsoft Forms. Interfaced with Java Swing.
 
-## Copying and Set-Up
+## Copying and Set-Up for Desktop Use
 1. Fork this repository.
 2. Download and unzip the RegistrationFiller folder.
 	* In the data folder, open the `config.txt` file and edit the mailing address for your clinic.
